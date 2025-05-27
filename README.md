@@ -19,7 +19,7 @@
 
 ## 📸 Скриншоты
 | Главный экран | Карточка дома | Отзыв | Карта | Поиск |
-|--------------|--------------|---------|---------|---------|
+|--------------|--------------|--------------|--------------|--------------|
 | ![Главный](https://api.webdmitriev.com/wp-content/uploads/2025/05/boholano-01-scaled.jpg) | ![Карточка дома](https://api.webdmitriev.com/wp-content/uploads/2025/05/boholano-02-scaled.jpg) | ![Отзыв](https://api.webdmitriev.com/wp-content/uploads/2025/05/boholano-03-scaled.jpg) | ![Карта](https://api.webdmitriev.com/wp-content/uploads/2025/05/boholano-04-scaled.jpg) | ![Поиск](https://api.webdmitriev.com/wp-content/uploads/2025/05/boholano-05-scaled.jpg) |
 
 ## ⚙️ Установка
