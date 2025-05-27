@@ -10,10 +10,7 @@ import SwiftUI
 struct SingleMapView: View {
     
     var title: String = ""
-
-    var latitude: Double
-    var longitude: Double
-
+    var house: Houses
 
     var body: some View {
         VStack(spacing: 12) {
@@ -22,7 +19,9 @@ struct SingleMapView: View {
                 .font(.system(size: 24, weight: .bold))
                 .foregroundStyle(.appBlack)
             
-            NavigationLink(destination: SingleMapDetailView(latitude: latitude, longitude: longitude)) {
+            NavigationLink {
+                MapView(houses: [house])
+            } label: {
                 ZStack {
                     Image("boholano-map")
                         .resizable()

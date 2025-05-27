@@ -33,9 +33,9 @@ struct HousesList: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 16) {
-                    ForEach(house, id: \.self) { home in
+                    ForEach(house.prefix(6), id: \.self) { home in
                         NavigationLink(destination: SingleHouseView(house: home)) {
-                            HousesItem(image: home.image, title: home.title, address: home.address, price: home.price, rating: home.rating)
+                            HousesItem(house: home)
                         }
                     }
                 }

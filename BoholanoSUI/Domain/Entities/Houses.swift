@@ -19,6 +19,7 @@ struct Houses: Codable, Hashable, Identifiable {
     var gallery: [HousesGallery]
     var details: HouseDetails
     var facilities: [HouseFacilities]
+    var recommend: Bool
     
     var longitude: Double
     var latitude: Double

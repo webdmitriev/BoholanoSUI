@@ -11,6 +11,7 @@ import Combine
 class HomeViewModel: ObservableObject {
     
     @Published var houses: [Houses] = []
+    var recommendedHouses: [Houses] = []
     private var cancellables = Set<AnyCancellable>()
     private let fetchHousesUseCase: FetchHousesUseCase
     
@@ -37,6 +38,8 @@ class HomeViewModel: ObservableObject {
                 
             } receiveValue: { [weak self] houses in
                 self?.houses = houses
+                self?.recommendedHouses = houses.filter { $0.recommend }
+                
             }
             .store(in: &cancellables)
     }

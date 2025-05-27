@@ -10,16 +10,7 @@ import CoreLocation
 
 struct SingleThumbnailView: View {
     
-    var latitude: Double
-    var longitude: Double
-
-    @State private var showMap = false
-    
     @Environment(\.dismiss) private var dismiss
-    
-    @State private var showPicker: Bool = false
-    
-    var thumbnail: String
     
     var house: Houses
     
@@ -28,7 +19,7 @@ struct SingleThumbnailView: View {
             GeometryReader { geo in
                 let minY = geo.frame(in: .global).minY
                 
-                NetworkImage(url: thumbnail)
+                NetworkImage(url: house.image)
                     .scaledToFill()
                     .frame(height: 380 + (minY > 0 ? minY : 0))
                     .frame(width: geo.size.width)

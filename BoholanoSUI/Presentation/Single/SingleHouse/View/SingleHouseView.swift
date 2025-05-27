@@ -16,42 +16,32 @@ struct SingleHouseView: View {
             ZStack(alignment: .bottom) {
                 ScrollView {
                     VStack {
-                        SingleThumbnailView(latitude: house.latitude, longitude: house.longitude, thumbnail: house.image, house: house)
+                        SingleThumbnailView(house: house)
                         
                         VStack {
-                            SingleHeaderView(title: house.title, address: house.address, latitude: house.latitude, longitude: house.longitude)
+                            SingleHeaderView(house: house)
                             
-                            if !house.gallery.isEmpty {
-                                SingleGalleryView(title: "Gallery Photos", gallery: house.gallery)
-                                
-                                Spacer(minLength: 36)
-                            }
+                            SingleGalleryView(title: "Gallery Photos", gallery: house.gallery)
+                            
+                            Spacer(minLength: 36)
                             
                             SingleDetailsView(title: "Details", details: house.details)
                             
                             Spacer(minLength: 36)
                             
-                            if house.descr.count > 0 {
-                                SingleDescriptionView(title: "Description", descr: house.descr)
-                                
-                                Spacer(minLength: 36)
-                            }
+                            SingleDescriptionView(title: "Description", descr: house.descr)
                             
-                            if !house.facilities.isEmpty {
-                                SingleFacilitesView(title: "Facilites", facilities: house.facilities)
-                                
-                                Spacer(minLength: 36)
-                            }
+                            Spacer(minLength: 36)
                             
-//                            if house.longitude.count > 0 && house.latitude.count > 0 {
-//                                SingleMapView(title: "Location", latitude: house.latitude, longitude: house.longitude)
-//                                
-//                                Spacer(minLength: 36)
-//                            }
+                            SingleFacilitesView(title: "Facilites", facilities: house.facilities)
                             
-                            if !house.reviews.isEmpty {
-                                SingleReviewView(title: "Reviews", reviews: house.reviews)
-                            }
+                            Spacer(minLength: 36)
+                            
+                            SingleMapView(title: "Location", house: house)
+                            
+                            Spacer(minLength: 36)
+                            
+                            SingleReviewView(title: "Reviews", reviews: house.reviews)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical, 24)

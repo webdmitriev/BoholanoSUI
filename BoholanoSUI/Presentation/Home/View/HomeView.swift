@@ -29,12 +29,6 @@ struct HomeView: View {
                         
                         Spacer(minLength: 24)
                         
-                        //
-//                        NavigationLink("Карта всех домов") {
-//                            MapView(houses: viewModel.houses)
-//                        }
-                        //
-                        
                         SearchComponentView(houses: viewModel.houses)
                         
                         Spacer(minLength: 24)
@@ -51,7 +45,9 @@ struct HomeView: View {
                             HousesList(house: viewModel.houses)
                         }
                         
-                        CategoryGroupView(title: "Recommended", houses: viewModel.houses)
+                        if !viewModel.recommendedHouses.isEmpty {
+                            CategoryGroupView(title: "Recommended", houses: viewModel.recommendedHouses)
+                        }
                     }
                 }
             }

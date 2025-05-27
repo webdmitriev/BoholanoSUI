@@ -9,15 +9,11 @@ import SwiftUI
 
 struct SingleHeaderView: View {
     
-    var title: String = ""
-    var address: String = ""
-    
-    var latitude: Double
-    var longitude: Double
+    var house: Houses
     
     var body: some View {
         VStack {
-            Text(title)
+            Text(house.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 16)
                 .font(.system(size: 28, weight: .bold))
@@ -25,14 +21,16 @@ struct SingleHeaderView: View {
             
             Spacer(minLength: 16)
             
-            NavigationLink(destination: SingleMapDetailView(latitude: latitude, longitude: longitude)) {
+            NavigationLink {
+                MapView(houses: [house])
+            } label: {
                 HStack(alignment: .top, spacing: 12) {
                     Image(systemName: "map")
                         .resizable()
                         .frame(width: 18, height: 18)
                         .foregroundStyle(.appGreen)
                     
-                    Text(address)
+                    Text(house.address)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 16, weight: .medium))
                         .foregroundStyle(.appBlack.opacity(0.7))

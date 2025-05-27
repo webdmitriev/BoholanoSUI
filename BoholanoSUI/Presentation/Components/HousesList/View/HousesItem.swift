@@ -9,22 +9,18 @@ import SwiftUI
 
 struct HousesItem: View {
     
-    var image: String = "card-01"
-    var title: String = "Title"
-    var address: String = "Panglao"
-    var price: String = "29"
-    var rating: String = "4.8"
+    var house: Houses
     
     var body: some View {
         HStack(spacing: 18) {
-            NetworkImage(url: image)
+            NetworkImage(url: house.image)
                 .frame(width: 100, height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
             
 
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) {
-                    Text(title)
+                    Text(house.title)
                         .font(.system(size: 18, weight: .bold))
                         .foregroundStyle(.appBlack)
                     
@@ -35,7 +31,7 @@ struct HousesItem: View {
                             .frame(width: 14, height: 14)
                             .foregroundStyle(.appGreen)
                         
-                        Text(rating)
+                        Text(house.rating)
                             .font(.system(size: 17, weight: .medium))
                             .foregroundStyle(.appBlack.opacity(0.8))
                     }
@@ -43,14 +39,14 @@ struct HousesItem: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .lineLimit(1)
                 
-                Text(address)
+                Text(house.address)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 14, weight: .regular))
                     .lineLimit(1)
                     .foregroundStyle(.appBlack.opacity(0.8))
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text("$\(price)")
+                    Text("$\(house.price)")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundStyle(.appGreen)
                     

@@ -92,7 +92,7 @@ struct UIKitMapView: UIViewRepresentable {
                 annotationView?.canShowCallout = false // мы сами покажем подпись
 
                 // ✅ Настраиваем кастомную иконку (SVG из Assets)
-                let image = UIImage(named: "location-marker")?
+                let image = UIImage(named: "location-marker-blue")?
                     .resized(to: CGSize(width: 48, height: 48)) // чуть крупнее
 
                 let imageView = UIImageView(image: image)

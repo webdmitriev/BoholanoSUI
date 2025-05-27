@@ -19,14 +19,14 @@ struct SearchView: View {
     
     var body: some View {
         ScrollView {
-            // Кастомный header
             HStack(spacing: 12) {
                 Button(action: {
                     dismiss()
                 }) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(.black)
+                    Image(systemName: "arrowshape.backward")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(.appBlack)
                 }
 
                 TextField("Find your apartment", text: $viewModel.searchText)
@@ -54,19 +54,34 @@ struct SearchView: View {
             .padding(.horizontal)
             .padding(.top, 12)
 
-            Spacer(minLength: 24)
+            Spacer(minLength: 36)
             
-            VStack {
+            VStack(alignment: .leading, spacing: 12) {
                 if viewModel.searchText.isEmpty {
-                    Text("Recommended:")
+                    Text("Recommended for vacation:")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 24, weight: .bold))
+                        .padding(.horizontal, 16)
+                        .font(.system(size: 22, weight: .bold))
                         .foregroundStyle(.appBlack)
+                    
+                    RecommendedHousesView(houses: viewModel.recommendedHouses)
+                    
+                    Spacer(minLength: 24)
+                    
+                    Text("Recommended for travel:")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundStyle(.appBlack)
+                    
+                    RecommendedTravelView()
                     
                 } else {
                     if viewModel.searchIsActieve {
                         ForEach(viewModel.filteredHouses) { home in
-                            HousesItem(image: home.image, title: home.title, address: home.address, price: home.price, rating: home.rating)
+                            NavigationLink(destination: SingleHouseView(house: home)) {
+                                HousesItem(house: home)
+                            }
                         }
                         
                         if viewModel.filteredHouses.isEmpty {
@@ -81,7 +96,6 @@ struct SearchView: View {
                     }
                 }
             }
-            .padding(.horizontal, 16)
 
         }
         .navigationBarHidden(true)

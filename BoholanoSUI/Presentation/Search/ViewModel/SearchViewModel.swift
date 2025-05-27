@@ -13,14 +13,16 @@ class SearchViewModel: ObservableObject {
     @Published var searchIsActieve: Bool = false
     @Published var filteredHouses: [Houses] = []
     
-    private var allHouses: [Houses] = []
+    let recommendedHouses: [Houses]
+    private var allHouses: [Houses]
     private var cancellables = Set<AnyCancellable>()
     
     init(houses: [Houses]) {
         self.allHouses = houses
+        self.recommendedHouses = houses.filter { $0.recommend }
 
         $searchText
-            .debounce(for: .seconds(2), scheduler: RunLoop.main)
+            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             .sink { [weak self] text in
@@ -39,3 +41,4 @@ class SearchViewModel: ObservableObject {
         }
     }
 }
+

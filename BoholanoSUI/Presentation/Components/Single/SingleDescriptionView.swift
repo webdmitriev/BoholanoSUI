@@ -22,7 +22,7 @@ struct SingleDescriptionView: View {
                 .foregroundStyle(.appBlack)
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(descr)
+                Text(descr.convertHTMLBreaksToNewlines())
                     .font(.system(size: 16))
                     .foregroundStyle(.appBlack.opacity(0.8))
                     .lineLimit(isExpanded ? nil : lineLimit)
