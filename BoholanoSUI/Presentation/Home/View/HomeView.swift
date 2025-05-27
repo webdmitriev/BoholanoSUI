@@ -30,9 +30,9 @@ struct HomeView: View {
                         Spacer(minLength: 24)
                         
                         //
-                        NavigationLink("Карта всех домов") {
-                            MapView(houses: viewModel.houses)
-                        }
+//                        NavigationLink("Карта всех домов") {
+//                            MapView(houses: viewModel.houses)
+//                        }
                         //
                         
                         SearchComponentView(houses: viewModel.houses)
