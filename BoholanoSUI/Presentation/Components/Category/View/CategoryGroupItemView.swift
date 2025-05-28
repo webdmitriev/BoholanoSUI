@@ -59,7 +59,7 @@ struct CategoryGroupItemView: View {
                         .truncationMode(.tail)
                     
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("$\(house.price)")
+                        Text("$\(Int(house.price))")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
                         

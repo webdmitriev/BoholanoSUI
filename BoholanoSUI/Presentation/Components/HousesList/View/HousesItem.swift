@@ -46,7 +46,7 @@ struct HousesItem: View {
                     .foregroundStyle(.appBlack.opacity(0.8))
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text("$\(house.price)")
+                    Text("$\(Int(house.price))")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundStyle(.appGreen)
                     

@@ -11,7 +11,14 @@ struct FilterSheetView: View {
     
     //@Environment(\.dismiss) private var dismiss
     
-    @StateObject private var viewModel = PriceFilterViewModel(min: 0, max: 127)
+    let houses: [Houses]
+    @StateObject private var viewModel: PriceFilterViewModel
+    
+    init(houses: [Houses]) {
+        self.houses = houses
+        let maxPrice = houses.map { Double($0.price) }.max() ?? 0
+        _viewModel = StateObject(wrappedValue: PriceFilterViewModel(min: 0, max: maxPrice))
+    }
     
     var body: some View {
         ScrollView {
@@ -44,12 +51,14 @@ struct FilterSheetView: View {
             
             Spacer(minLength: 16)
             
-            Text("Price: $\(Int(viewModel.filter.selectedMin)) – $\(Int(viewModel.filter.selectedMax))")
+            Text("Price")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 16)
                 .font(.system(size: 20, weight: .bold))
                 .foregroundStyle(.appBlack)
 
+            Spacer(minLength: 32)
+            
             CustomRangeSlider(
                 lowerValue: $viewModel.filter.selectedMin,
                 upperValue: $viewModel.filter.selectedMax,

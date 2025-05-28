@@ -13,7 +13,7 @@ struct Houses: Codable, Hashable, Identifiable {
     var title: String
     var address: String
     var descr: String
-    var price: String
+    var price: Double
     var rating: String
     var image: String
     var gallery: [HousesGallery]

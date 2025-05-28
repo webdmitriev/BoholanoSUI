@@ -50,7 +50,7 @@ struct SearchComponentView: View {
         }
         .padding(.horizontal, 16)
         .sheet(isPresented: $activeSheet, content: {
-            FilterSheetView()
+            FilterSheetView(houses: houses)
         })
     }
 }

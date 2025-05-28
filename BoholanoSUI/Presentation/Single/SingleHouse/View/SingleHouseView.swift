@@ -53,7 +53,7 @@ struct SingleHouseView: View {
                 
                 HStack {
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("$\(house.price)")
+                        Text("$\(Int(house.price))")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundStyle(.appGreen)
                         

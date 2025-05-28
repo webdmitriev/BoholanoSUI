@@ -18,7 +18,12 @@ struct PriceFilter: Equatable {
 class PriceFilterViewModel: ObservableObject {
     @Published var filter: PriceFilter
 
+    @Published var min: Double
+    @Published var max: Double
+
     init(min: Double, max: Double) {
+        self.min = min
+        self.max = max
         self.filter = PriceFilter(
             minPrice: min,
             maxPrice: max,
@@ -54,30 +59,49 @@ struct CustomRangeSlider: View {
                     .offset(x: lowerThumbPosition)
 
                 // Lower thumb
-                Circle()
-                    .fill(.appGreen)
-                    .frame(width: 28, height: 28)
-                    .position(x: lowerThumbPosition, y: 18)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { gesture in
-                                let value = valueFrom(position: gesture.location.x, width: sliderWidth)
-                                lowerValue = min(max(range.lowerBound, value), upperValue)
-                            }
-                    )
+                VStack(spacing: 4) {
+                    Text("\(Int(lowerValue))")
+                        .frame(width: 40, height: 24)
+                        .font(.system(size: 14, weight: .regular))
+                        .background(.appGreen)
+                        .foregroundColor(.appWhite)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+
+                    Circle()
+                        .fill(.appGreen)
+                        .frame(width: 28, height: 28)
+
+                }
+                .position(x: lowerThumbPosition, y: 5)
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            let value = valueFrom(position: gesture.location.x, width: sliderWidth)
+                            lowerValue = min(max(range.lowerBound, value), upperValue)
+                        }
+                )
 
                 // Upper thumb
-                Circle()
-                    .fill(.appGreen)
-                    .frame(width: 28, height: 28)
-                    .position(x: upperThumbPosition, y: 18)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { gesture in
-                                let value = valueFrom(position: gesture.location.x, width: sliderWidth)
-                                upperValue = max(min(range.upperBound, value), lowerValue)
-                            }
-                    )
+                VStack(spacing: 4) {
+                    Text("\(Int(upperValue))")
+                        .frame(width: 40, height: 24)
+                        .font(.system(size: 14, weight: .regular))
+                        .background(.appGreen)
+                        .foregroundColor(.appWhite)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+
+                    Circle()
+                        .fill(.appGreen)
+                        .frame(width: 28, height: 28)
+                }
+                .position(x: upperThumbPosition, y: 5)
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            let value = valueFrom(position: gesture.location.x, width: sliderWidth)
+                            upperValue = max(min(range.upperBound, value), lowerValue)
+                        }
+                )
             }
             .frame(height: 40)
         }
