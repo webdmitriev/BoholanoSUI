@@ -44,10 +44,19 @@ struct UIKitMapView: UIViewRepresentable {
             mapView.setVisibleMapRect(route.polyline.boundingMapRect,
                                       edgePadding: UIEdgeInsets(top: 60, left: 40, bottom: 60, right: 40),
                                       animated: true)
-        } else if let userLocation = userLocation {
-            let region = MKCoordinateRegion(center: userLocation,
-                                            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-            mapView.setRegion(region, animated: true)
+        } else {
+            if houses.count == 1 {
+                // Центрируем на единственном доме
+                let houseCoordinate = houses[0].coordinate
+                let region = MKCoordinateRegion(center: houseCoordinate,
+                                                span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+                mapView.setRegion(region, animated: true)
+            } else if let userLocation = userLocation {
+                // Центрируем на пользователе (если домов несколько)
+                let region = MKCoordinateRegion(center: userLocation,
+                                                span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+                mapView.setRegion(region, animated: true)
+            }
         }
     }
 
