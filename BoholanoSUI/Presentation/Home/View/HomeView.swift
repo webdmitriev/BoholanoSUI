@@ -33,7 +33,7 @@ struct HomeView: View {
                         
                         Spacer(minLength: 24)
                         
-                        CategoryView()
+//                        CategoryView()
                         
                         Spacer(minLength: 16)
                         
@@ -49,6 +49,7 @@ struct HomeView: View {
                             CategoryGroupView(title: "Recommended", houses: viewModel.recommendedHouses)
                         }
                     }
+                    .background(Color.appBg)
                 }
             }
             .onAppear {

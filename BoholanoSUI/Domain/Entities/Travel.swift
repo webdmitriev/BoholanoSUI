@@ -12,5 +12,6 @@ struct Travel: Codable, Identifiable, Hashable {
     var id: Int
     var title: String
     var image: String
+    var descr: String
     
 }
