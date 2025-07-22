@@ -59,3 +59,31 @@ struct HomeView: View {
         }
     }
 }
+
+
+//App
+//- Helpers
+//Data
+//- DataSource
+//- Repository
+//Domain
+//- Entities
+//- Repository
+//- Usecase
+//Infrastructure
+//- InMemory
+//- Remote
+//Presentation
+//- Onboarding
+//-- View
+//-- ViewModel
+//- Home
+//-- View
+//-- ViewModel
+//- Photo
+//-- View
+//-- ViewModel
+//- Library
+//-- View
+//-- ViewModel
+//- Setting
