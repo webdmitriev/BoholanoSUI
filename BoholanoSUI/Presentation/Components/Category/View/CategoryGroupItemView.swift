@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct CategoryGroupItemView: View {
-    
     var house: Houses
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            
             NetworkImage(url: house.image)
                 .frame(width: 218, height: 308)
                 .clipped()
+                .allowsHitTesting(false)
             
             BgGradient(height: 160)
                 .frame(height: 160)
                 .frame(maxWidth: .infinity, alignment: .bottom)
             
             VStack(spacing: 8) {
-                
                 // Rating badge
                 HStack {
                     Spacer()
@@ -75,5 +73,6 @@ struct CategoryGroupItemView: View {
         .background(Color.gray.opacity(0.1))
         .clipShape(RoundedRectangle(cornerRadius: 24))
         .shadow(radius: 1)
+        .contentShape(Rectangle()) // Это ключевое изменение!
     }
 }
