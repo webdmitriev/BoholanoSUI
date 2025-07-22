@@ -73,6 +73,6 @@ struct CategoryGroupItemView: View {
         .background(Color.gray.opacity(0.1))
         .clipShape(RoundedRectangle(cornerRadius: 24))
         .shadow(radius: 1)
-        .contentShape(Rectangle()) // Это ключевое изменение!
+        .contentShape(Rectangle())
     }
 }
