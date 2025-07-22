@@ -19,7 +19,7 @@ struct NetworkImage: View {
         contentMode: ContentMode = .fill,
         transition: AnyTransition = .opacity,
         placeholderColor: Color = .white,
-        errorImage: String = "preview-skip-01"
+        errorImage: String = "boholano-default"
     ) {
         self.url = url
         self.contentMode = contentMode
