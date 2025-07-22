@@ -13,52 +13,74 @@ enum ContentPart {
 }
 
 struct SingleTravelView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var travel: Travel
 
     var body: some View {
         let parts = parseDescr(travel.descr)
-
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text(travel.title)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title)
-                    .bold()
-                    .padding(.bottom, 2)
-
-                ForEach(parts.indices, id: \.self) { index in
-                    switch parts[index] {
-                    case .text(let text):
-                        Text(text)
-                            .font(.body)
-                            .multilineTextAlignment(.leading)
-                    case .image(let url):
-                        AsyncImage(url: url) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .cornerRadius(8)
-                            case .failure:
-                                Image("boholano-default")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(maxWidth: .infinity, maxHeight: 280)
-                                    .cornerRadius(8)
-                                    .clipped()
+        
+        ZStack(alignment: .topLeading) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(travel.title)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.title)
+                        .bold()
+                        .padding(.bottom, 2)
+                    
+                    ForEach(parts.indices, id: \.self) { index in
+                        switch parts[index] {
+                        case .text(let text):
+                            Text(text)
+                                .font(.body)
+                                .multilineTextAlignment(.leading)
+                        case .image(let url):
+                            AsyncImage(url: url) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .cornerRadius(8)
+                                case .failure:
+                                    Image("boholano-default")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(maxWidth: .infinity, maxHeight: 280)
+                                        .cornerRadius(8)
+                                        .clipped()
                                     
-                            @unknown default:
-                                EmptyView()
+                                @unknown default:
+                                    EmptyView()
+                                }
                             }
                         }
                     }
                 }
+                .padding()
             }
-            .padding()
+            .padding(.top, 50)
+            
+            HStack {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "arrowshape.backward")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(.black)
+                }
+                
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.top, 20)
+            .padding(.horizontal, 16)
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     func parseDescr(_ descr: String) -> [ContentPart] {
