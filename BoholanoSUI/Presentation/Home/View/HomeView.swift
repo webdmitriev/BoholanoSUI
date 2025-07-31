@@ -33,7 +33,7 @@ struct HomeView: View {
                         
                         Spacer(minLength: 24)
                         
-//                        CategoryView()
+                        // CategoryView()
                         
                         Spacer(minLength: 16)
                         
@@ -42,7 +42,7 @@ struct HomeView: View {
                         Spacer(minLength: 36)
                         
                         if !viewModel.houses.isEmpty {
-                            HousesList(house: viewModel.houses)
+                            HousesList(houses: viewModel.houses)
                         }
                         
                         if !viewModel.recommendedHouses.isEmpty {
