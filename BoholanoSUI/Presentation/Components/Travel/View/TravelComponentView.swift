@@ -13,8 +13,8 @@ struct TravelComponentView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HeaderTop(title: "Recently Booked", btnText: "See all") {
-                TravelCatalog()
+            HeaderTop(title: "Travel list", btnText: "See all") {
+                TravelCatalog(travel: travel)
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
