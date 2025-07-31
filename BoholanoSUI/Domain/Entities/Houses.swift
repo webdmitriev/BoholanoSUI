@@ -12,6 +12,7 @@ struct Houses: Codable, Hashable, Identifiable {
     var id: Int
     var title: String
     var address: String
+    var place: String
     var descr: String
     var price: Double
     var rating: String
@@ -26,6 +27,10 @@ struct Houses: Codable, Hashable, Identifiable {
     
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    var numericRating: Double {
+        Double(rating) ?? 0.0
     }
     
     var reviews: [Review]
