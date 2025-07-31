@@ -11,15 +11,25 @@ struct HousesCatalog: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @State var houses: [Houses] = []
+    @StateObject var viewModel: HomeViewModel
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             VStack(spacing: 24) {
-                SearchComponentView(houses: houses)
+                SearchComponentView(houses: viewModel.houses)
                 
-                if !houses.isEmpty {
-                    HousesList(isActiveHeader: false, houses: houses)
+                if !viewModel.houses.isEmpty {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        LazyVStack(spacing: 16) {
+                            ForEach(viewModel.houses, id: \.self) { home in
+                                NavigationLink(destination: SingleHouseView(house: home)) {
+                                    HousesItem(house: home)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 28)
+                    }
                 }
             }
             .padding(.top, 50)

@@ -60,4 +60,22 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellablesTravel)
     }
     
+    func getHousesFilter(place: [String], price: (Int, Int), rating: [String], facilities: [String]) {
+        fetchHousesUseCase.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { complition in
+                switch complition {
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                default:
+                    break
+                }
+                
+            } receiveValue: { [weak self] houses in
+                self?.houses = houses
+                self?.recommendedHouses = houses.filter { $0.recommend }
+            }
+            .store(in: &cancellables)
+    }
+    
 }
